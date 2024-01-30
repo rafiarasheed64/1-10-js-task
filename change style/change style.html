@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHANGE STYLE</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            height: 100vh;
+            width: 100%;
+            background-color: darkslateblue;
+        }
+        .heading{
+            font-size: 70px;
+            text-align: center;
+            color: white;
+        }
+        .text{
+        width: 70%;
+        height: max-content;
+        margin: auto;
+        font-size: 50px;
+        /* border: 1px solid #000; */
+        text-align: center;
+        color: white;
+      }
+      
+        .img-div{
+            height: 300px;
+            width: 550px;
+            margin: auto;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+        .image{
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1 class="heading">Update CSS Variables with <span class="clr">JS</span></h1>
+        <div class="text">
+            Spacing: <input type="range" id="range" >
+            Blur: <input type="range" id="range" value="0" min="0" max="50">
+            rotate: <input id="range" type="range" value="0" min="0" max="100">
+            scale: <input id="range" type="range" min="0" value="0" max="100">
+            Base Color: <input class="color" type="color">
+    
+          </div>
+        <div class="img-div">
+            <img class="image" src="./nature-2ygv7ssy2k0lxlzu.jpg" alt="">
+        </div>
+    </div>
+    <script>
+         let ranges = document.querySelectorAll("#range")
+         let imgdiv = document.querySelector(".img-div")
+         let image = document.querySelector(".image ")
+         let color = document.querySelector(".color")
+         let clr = document.querySelector(".clr")
+         ranges[0].addEventListener('input', (element) => {
+         value = element.target.value
+         imgdiv.style.padding = `${value}px`
+        })
+        ranges[1].addEventListener('input', (element) => {
+            value = element.target.value
+            imgdiv.style.filter = `blur(${value}px)`
+        })
+        ranges[2].addEventListener('input', (element) => {
+            value = element.target.value
+            imgdiv.style.transform = `rotate(${value}deg)`
+        })
+        ranges[3].addEventListener('input', (element) => {
+            value = element.target.value
+            image.style.transform = `scale(${value})`
+        })
+        color.addEventListener('input', (e) => {
+            value = e.target.value
+            imgdiv.style.backgroundColor = value
+            clr.style.color = value
+    })
+    </script>
+    
+</body>
+</html>

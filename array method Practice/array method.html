@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array methods</title>
+</head>
+<body>
+
+    <script>
+        // array methods
+
+        // 1.shift()
+        let variable1 = ["red","green","orange","blue","purple","pink","yellow"]
+        variable1.shift()
+        console.log(variable1);
+
+        // 2.unshift()
+        let variable2 = ["red","green","orange","blue","purple","pink","yellow"]
+        variable2.unshift("black")
+        console.log(variable2);
+
+        // 3.pop()
+        let variable3 = ["red","green","orange","blue","purple","pink","yellow"]
+        variable3.pop()
+        console.log(variable3);
+
+        // 4.push()
+        let variable4 = ["red","green","orange","blue","purple","pink","yellow"]
+        variable4.push("grey")
+        console.log(variable4);
+
+        // 5.slice()
+        let variable5 = ["red","green","orange","blue","purple","pink","yellow"]
+        let copy_and_paste_in_new_array = variable5.slice(1,5)
+        console.log(copy_and_paste_in_new_array);
+
+        // 6.splice()
+        let variable6 = ["red","green","orange","blue","purple","pink","yellow"]
+        let remove_in_original = variable6.splice(2 , 3 , "black" )
+        console.log(remove_in_original);
+        console.log(variable6);
+
+        // 7.join()
+        let variable7 = ["red","green","orange","blue","purple","pink","yellow"]
+        let array_to_string = variable7.join(" ,")
+        console.log(array_to_string);
+
+        // 8.concat()
+        let variable8 = ["red","green","orange","blue","purple","pink","yellow"]
+        let variable9 = ["apple","mango","orange","banana","grapes"]
+        let merge_var = variable8.concat(variable9)
+        console.log(merge_var);
+
+        // 9.forEach()
+        let variable10 = ["red","green","orange","blue","purple","pink","yellow"]
+        variable10.forEach(function( elem, indx ){
+            console.log(elem, indx);
+        })
+
+
+
+
+
+</script>
+    
+</body>
+</html>

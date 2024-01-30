@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CATCH ELEMENT</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            height: 100vh;
+            width: 100%;
+            background-color: skyblue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .box1{
+            height: 450px;
+            width: 450px;
+            border: 5px solid #000;
+            position: relative;
+        }
+        .mini{
+            height: 100px;
+            width: 100px;
+            border: 3px solid #cb2424;
+            border-radius: 8px;
+            background-color: lightgreen;
+            position: absolute;
+            transition: 0.5s linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>CATCHING ELEMENT</h1>
+        <div class="box">
+            <div class="heightwidth"></div>
+            <div class="scorecard">Score : <span class="score">0</span></div>
+        </div>
+        <div class="box1"></div>
+    </div>
+
+    <script>
+        let box1 = document.querySelector(".box1")
+        let heightwidth = document.querySelector(".heightwidth")
+        let score = document.querySelector(".score")
+        let scoreincr = 0
+        let x
+        let y
+
+        box1.addEventListener("mouseenter", ()=>{
+            box1.style.backgroundColor = "pink"
+            box1.style.cursor = "grab"
+        })
+        box1.addEventListener("mouseleave", ()=>{
+            box1.style.backgroundColor = "white"
+        })
+        document.addEventListener("DOMContentLoaded", ()=>{
+            let innerbox = document.createElement("div")
+            box1.appendChild(innerbox)
+            innerbox.classList.add("mini")
+            function movement(){
+                let randomleft = Math.random()*(box1.clientWidth-100)
+                let randomtop = Math.random()*(box1.clientHeight-100)
+                innerbox.style.top = randomtop + "px"
+                innerbox.style.left = randomleft + "px"
+                x=innerbox.style.top 
+                y=innerbox.style.left
+                heightwidth.innerHTML = "X : "+ x + "Y : " + y 
+            }
+            movement()
+            setInterval(movement,500)
+            innerbox.addEventListener("click", ()=>{
+                scoreincr++
+                innerbox.style.backgroundColor = "darkblue"
+                score.innerHTML = scoreincr
+                setTimeout(()=>{
+                innerbox.style.backgroundColor = "lightgreen"
+                },1000)
+            })
+        })
+    </script>
+</body>
+</html>

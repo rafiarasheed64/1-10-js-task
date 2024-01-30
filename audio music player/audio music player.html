@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>MUSIC PLAYER</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            height: 100vh;
+            width: 100%;
+            background-color: rgb(175, 223, 242);
+            padding: 1px;
+        }
+        .box{
+            height: 80vh;
+            width: 29%;
+            border-radius: 15px;
+            background-color: white;
+            margin: auto;
+            margin-top: 65px;
+            position: relative;
+        }
+        .img-box{
+            height: 55%;
+            width: 80%;
+            border-radius: 10px;
+            position: absolute;
+            left: 10%;
+            top: -30px;
+            overflow: hidden;
+        }
+        .image1{
+            height: 100%;
+            width: 100%;
+        }
+        .song{
+            position: absolute;
+            top: 55%;
+            left: 10%;
+        }
+        .text{
+            position: absolute;
+            top: 65%;
+            left: 27%;
+            font-weight: 500;
+            font-size: 27px;
+        }
+        .box1{
+            height: max-content;
+            width: 90%;
+            position: absolute;
+            top: 74%;
+            left: 5%
+        }
+        .bx1{
+            padding: 5px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .line{
+            height: 4px;
+            width: 100%;
+            border-radius: 5px;
+            background-color: gray;
+        }
+        .box2{
+            height: max-content;
+            width: 50%;
+            position: absolute;
+            top: 86%;
+            /* border: 1px solid #000; */
+            left: 5%;
+            color: grey;
+            margin-left: 21%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .bi{
+            font-size: 25px;
+        }
+        .play{
+            font-size: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="box">
+            <div class="img-box">
+                <img class="image1" src="./jacinto-1.jpg" alt="">
+            </div>
+            <h1 class="song">Electric Chill Machine</h1>
+            <h3 class="text">Jacinto Design</h3>
+            <audio src="jacinto-1.mp3"></audio>
+            <div class="box1">
+                <div class="bx1">
+                    <span class="time">0.00</span>
+                    <span class="duration">2.06</span>  
+                </div>
+                <div class="line"></div>
+            </div>
+            <div class="box2">
+                <i class="bi bi-skip-backward previous"></i>
+                <i class="bi bi-play-fill play"></i>
+                <i class="bi bi-skip-forward next"></i>
+            </div>
+        </div>
+    </div>
+    <script>
+        let image1 = document.querySelector(".image1")
+        let songname = document.querySelector(".songname")
+        let text = document.querySelector(".text")
+        let time = document.querySelector(".time")
+        let duration = document.querySelector(".duration")
+        let line = document.querySelector(".line")
+        let pervious = document.querySelector(".pervious")
+        let play = document.querySelector(".play")
+        let next = document.querySelector(".next")
+        song = [
+            {
+                song : "jacinto-1.mp3",
+                songname : "Electric Chill Machine",
+                artist : "RJ Jacinto"
+            }
+            ,
+            {
+                song : "jacinto-2.mp3",
+                songname : "Seven nation army",
+                artist : "White Stripes"
+            }
+            ,
+            {
+                song : "jacinto-3.mp3",
+                songname : "Goodnight, Disco Queen",
+                artist : "BloodPop"
+            }
+            ,
+            {
+                song : "metric-1.mp3",
+                songname : "Front Row (Remix)",
+                artist : "DJ Soup"
+            }
+        ]
+
+
+
+    </script>
+    
+</body>
+</html>

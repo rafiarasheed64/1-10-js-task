@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>BOOK LIST APP</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            height: 100vh;
+            width: 100%;
+            background-color: pink;
+            padding: 60px;
+        }
+        h1{
+            text-align: center;
+            font-size: 50px;
+        }
+        .txt{
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        .box{
+            width: 40%;
+            margin-left: 10%;
+            /* border: 1px solid #000; */
+            width: max-content;
+            display: inline-block;
+        }
+        #inp1, #inp2{
+            height: 40px;
+            width: 100%;
+        }
+        .btn{
+            background-color: navy;
+            color: white;
+            height: 40px;
+            width: 480px;
+            display: block;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .box1{
+            width: 40%;
+            /* border: 1px solid #000; */
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 30px;
+        }
+        .bx1{
+            width: 100%;
+            padding: 10px;
+            font-size: 20px;
+            border-top: 1px solid grey;
+            border-bottom: 1px solid grey;
+
+        }
+        .text{
+            display: inline-block;
+            margin-left: 20px;
+        }
+        .add-box{
+            padding: 5px;
+            width: 100%;
+            border-top: 1px solid #828181;
+            display: flex;
+            justify-content: space-between;
+        }
+        .clr{
+            background-color: rgb(82, 174, 82);
+            color: white;
+            border: none;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>My Books</h1>
+        <div class="box">
+            <p class="txt">Title</p>
+            <input type="text" id="inp1">
+            <p class="txt">Author</p>
+            <input type="text" id="inp2">
+            <button class="btn" disabled>Add Books</button>
+        </div>
+        <div class="box1">
+            <div class="bx1">
+                <p class="text">Title</p>
+                <p class="text">Author</p>
+            </div>
+            <div class="bx3"></div>
+        </div>
+    </div>
+    <script>
+        let inp1 = document.querySelector("#inp1")
+        let inp2 = document.querySelector("#inp2")
+        let btn = document.querySelector(".btn")
+        let box1 = document.querySelector(".box1")
+        let bx3 = document.querySelector(".bx3")
+
+        btn.disabled = false
+
+        btn.addEventListener("click", ()=>{
+            if(inp1.value == "" || inp2.value == ""){
+                alert("enter value")
+                // btn.disabled = true
+            }
+            else{
+            // btn.disabled = false
+
+            let bx2 = document.createElement("div")
+            bx3.appendChild(bx2)
+            bx2.classList.add("add-box")
+
+            let inp1value = document.createElement("p")
+            bx2.appendChild(inp1value)
+            inp1value.innerHTML = inp1.value
+
+            let inp2value = document.createElement("p")
+            bx2.appendChild(inp2value)
+            inp2value.innerHTML = inp2.value
+
+            let icon = document.createElement("i")
+            bx2.appendChild(icon)
+            icon.className = "bi bi-x"
+            icon.style.padding = "7px"
+            icon.style.backgroundColor = "red"
+            icon.style.color = "white"
+            icon.addEventListener("click", ()=>{
+                bx2.style.display = "none"
+            })
+
+            let edit = document.createElement("button")
+            bx2.appendChild(edit)
+            edit.innerHTML = "Edit"
+            edit.classList.add("clr")
+            edit.addEventListener("click", ()=>{
+                if(edit.innerHTML == "Edit"){
+                    inp1.value = inp1value.innerHTML
+                    inp2.value = inp2value.innerHTML
+                    btn.disabled = true
+                    edit.innerHTML = "Save"
+                }
+                else{
+                    btn.disabled = false
+                    edit.innerHTML = "Edit"
+                    inp1value.innerHTML = inp1.value
+                    inp2value.innerHTML = inp2.value
+                    inp1.value = ""
+                    inp2.value = ""
+                }
+            })
+            let up = document.createElement("button")
+            bx2.appendChild(up)
+            up.innerHTML = "Up"
+            up.classList.add("clr")
+            let current = bx2
+            up.addEventListener("click", ()=>{
+                let pervious = current.previousElementSibling
+                if(pervious && pervious.classList.contains("add-box")){
+                    bx3.insertBefore(current,pervious)
+                }
+            })
+
+            let down = document.createElement("button")
+            bx2.appendChild(down)
+            down.innerHTML = "Down"
+            down.classList.add("clr")
+            down.addEventListener("click", ()=>{
+                let next = current.nextElementSibling
+                if(next && next.classList.contains("add-box")){
+                    bx3.insertBefore(next,current)
+                }
+            })
+
+            inp1.value = ""
+            inp2.value = ""
+            }
+        })
+
+
+    </script>
+    
+</body>
+</html>

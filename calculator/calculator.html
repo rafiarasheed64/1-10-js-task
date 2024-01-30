@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <style>
+        .main{
+            height: 100vh;
+            width: 100%;
+            background-color: cornflowerblue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .box{
+            height: 380px;
+            width: 330px;
+            background-color: rgb(181, 179, 179);
+            border: 1px solid #000;
+        }
+        .outputdiv{
+            height: 30px;
+            background-color: white;
+            text-align: right;
+            font-size: 20px;
+            padding: 10px;
+        }
+        .row{
+            width: 100%;
+        }
+        .btn{
+            height:60px;
+            width: 60px;
+            background-color: white;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 10px;
+            font-size: 20px;
+            text-align: center;    
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>CALCULATOR</h1>
+        <div class="box"></div>
+    </div>
+    <script>
+        let box = document.querySelector(".box")
+        let keybtn = [
+            ["1","2","3","+"],
+            ["4","5","6","-"],
+            ["7","8","9","*"],
+            ["C","0","=","/"]
+        ]
+        let symbol = ["+","-","*","/"]
+        let output 
+        document.addEventListener("DOMContentLoaded", ()=> {
+            output = document.createElement("div")
+            box.appendChild(output)
+            output.classList.add("outputdiv")
+            output.innerHTML = "0"
+            console.log(output);
+            for (let i = 0 ; i < keybtn.length ; i++){
+                console.log(keybtn[i].length);
+                let div = document.createElement("div")
+                box.appendChild(div)
+                div.classList.add("row")
+                for(let j = 0 ; j < keybtn.length ; j++){
+                    let buttons = document.createElement("div")
+                    div.appendChild(buttons)
+                    buttons.classList.add("btn")
+                    buttons.innerHTML = keybtn[i][j] // show number
+                    buttons.addEventListener("click", calculation)
+                }
+            }
+
+        })
+        function calculation(){
+            let value = this.innerHTML
+            let cal = output.innerHTML
+            if(cal == "0"){
+                cal = ""
+            }
+            if(value == "="){
+                cal= eval(cal)
+            }
+            else{
+                let substrg = cal.substring(cal.length - 1)
+                if(symbol.includes(value)){
+                    if(symbol.includes(substrg)){
+                        cal = cal.substring(0, cal.length - 1)
+                    }
+                    else{
+                        cal = eval(cal)
+                    }
+                }
+                cal = cal + value
+            }
+            if (value == "C"){
+                cal = 0
+                location.reload()
+            }
+            output.innerHTML = cal
+
+        }
+    </script>
+    
+</body>
+</html>

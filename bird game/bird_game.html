@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Game</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            height: 100vh;
+            width: 100%;
+            background-color: beige;
+            display: flex;
+        }
+        .box1{
+            height: 100%;
+            width: 50%;
+        }
+        .text{
+            font-size: 25px;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-top: 35%;
+            font-weight: 600;
+        }
+        .button{
+            background-color: rgb(184,134,11);
+            border-radius: 7px;
+            padding: 5px 20px;
+            color: white;
+            font-size: 24px;
+            border: none;
+            margin-left: 35%;
+            margin-top: 20px;
+        }
+        .box2{
+            height: 100%;
+            width: 50%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            visibility: hidden;
+        }
+        .subbox{
+            height: 200px;
+            width: 200px;
+            margin-top: 10px;
+            border-radius: 10px;
+            background-color: #000;
+        }
+        .image{
+            height: 100%;
+            width: 100%;
+            background-image: url(./how-do-birds-learn-to-fly.webp);
+            background-position: center;
+            background-size: cover;
+            transform: rotateY(180deg);
+            transition: 0.3s linear ;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="box1">
+            <p class="text">Find the IMAGE behind the black box...</p>
+            <button class="button">Let's Start</button>
+        </div>
+        <div class="box2">
+            <div class="subbox"></div>
+            <div class="subbox"></div>
+            <div class="subbox"></div>
+            <div class="subbox"></div>
+            <div class="subbox"></div>
+            <div class="subbox"></div>
+            <div class="subbox"></div>
+            <div class="subbox"></div>
+            <div class="subbox"></div>
+        </div>
+    </div>
+    <script>
+        let box2 = document.querySelector(".box2");
+        let subbox = document.querySelectorAll(".subbox");
+        let button = document.querySelector(".button");
+        let guess = 0
+        button.addEventListener("click", function(){
+          box2.style.visibility = "visible"
+        let random = Math.floor(Math.random()* subbox.length ) 
+        console.log(random);
+        let imgbox = document.createElement("div")
+        imgbox.classList.add("image")
+        imgbox.style.display = "none"
+        subbox[random].appendChild(imgbox)
+        subbox.forEach(function(ele, idx){
+            ele.addEventListener("click", function(){
+                guess++
+                if(  idx == random  ){
+                    imgbox.style.display = "block"
+                    alert( ` You found image in ${guess} guess.` )
+                    setTimeout( function() {
+                        location.reload()
+                    }, 3000 )
+                }
+                else{
+                    ele.style.backgroundImage = "url(./download.jpg)";
+                    ele.style.transition = "linear 0.3s"
+                    ele.style.transform = "rotateY(180deg)";
+                }
+            })
+          })
+        })
+    </script>
+</body>
+</html>
